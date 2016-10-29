@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <title>TODO List</title>
+
+    <meta name='description' content='A simple app to track TODO items'>
+    <meta name='author' content=''>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' href='sass/main.css'>
+</head>
+
+<body>
+
+    <header>
+        <h1>todos</h1>
+    </header>
+
+    <main>
+        <div class='todoContainer'>
+            <form class='todoForm' action='' method='post'>
+                <input type='text' class='new-todo' placeholder='What needs to be done?'>
+            </form>
+        <ul class='items'>
+        </ul>
+      </div>
+
+        <footer>
+            <p class='remaining'><span class='incomplete-items'>0</span> items left</p>
+            <nav>
+                <ul>
+                    <li><button class='show-all active'>All</button></li>
+                    <li><button class='show-active'>Active</button></li>
+                    <li><button class='show-completed'>Completed</button></li>
+                </ul>
+            </nav>
+            <button class='clear'>Clear completed</button>
+        </footer>
+    </main>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
