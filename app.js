@@ -14,6 +14,6 @@ angular.module('todoApp', ['ui.router', 'LocalStorageModule'])
   }).state('todoParent.todos', {
     url: 'todos?filter',
     templateUrl: 'src/templates/todos.html',
-    controller: 'TodoController as todoCtrl'
+    controller: 'ListController as list'
   });
 });

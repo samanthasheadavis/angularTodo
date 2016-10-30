@@ -3,8 +3,8 @@
       <p>
         {{todoCtrl.message}}
       </p>
-        <form class='todoForm' action='' method='post'>
-            <input type='text' class='new-todo' placeholder='What needs to be done?'>
+        <form class='todoForm' name="todoForm" ng-submit='todoCtrl.createTodo(todoForm.todoText.$viewValue)'>
+            <input name="todoText" type='text' class='new-todo' placeholder='What needs to be done?' ng-model="todoText">
         </form>
     <ul class='items'>
     </ul>
