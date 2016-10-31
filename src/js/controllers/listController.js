@@ -1,57 +1,86 @@
-angular.module('todoApp').controller('ListController', function($state, localStorageService, $stateParams) {
+angular.module('todoApp').controller('ListController', function($state, localStorageService, StorageService, $stateParams) {
 
-    this.getTodo = function() {
-        return localStorageService.get('localStorageTodo') || [];
-    };
+            this.removeTodo = function(todo) {
+                return localStorageService.remove('localStorageTodo', todo);
+            };
 
-    this.setTodo = function(todoArray) {
-        localStorageService.set('localStorageTodo', todoArray);
-    };
+            this.todoItems = StorageService.get();
 
-    this.removeTodo = function(todo) {
-        return localStorageService.remove('localStorageTodo', todo);
-    };
+            this.findTodoById = function(todoArray, id) {
+                var todoToReturn;
+                todoArray.forEach(function(item) {
+                    if (item.id === id) {
+                        todoToReturn = item;
+                    }
+                });
+                return todoToReturn;
+            };
 
-    this.todoItems = this.getTodo();
+            this.toggleChecked = function(item) {
+                item.checked = !item.checked;
+                var todoArray = StorageService.get();
+                var todoToUpdate = this.findTodoById(todoArray, item.id);
+                angular.copy(item, todoToUpdate);
+                StorageService.set(todoArray);
+                this.countItems(todoArray);
+            };
 
-    this.findTodoById = function(todoArray, id) {
-        var todoToReturn;
-        todoArray.forEach(function(item) {
-            if (item.id === id) {
-                todoToReturn = item;
-            }
-        });
-        return todoToReturn;
-    };
+            this.listFilter = $stateParams.filter || 'all';
+            this.filtersObj = {
+                all: {},
+                completed: {
+                    checked: true
+                },
+                active: {
+                    checked: false
+                }
+            };
 
-    this.toggleChecked = function(item) {
-        item.checked = !item.checked;
-        var todoArray = this.getTodo();
-        var todoToUpdate = this.findTodoById(todoArray, item.id);
-        angular.copy(item, todoToUpdate);
-        this.setTodo(todoArray);
-    };
+            this.delete = function(item) {
+                var todoArray = StorageService.get();
+                var todoToDelete = this.findTodoById(todoArray, item.id);
+                var index = todoArray.indexOf(todoToDelete);
+                if (index > -1) {
+                    todoArray.splice(index, 1);
+                }
+                StorageService.set(todoArray);
+                $state.reload('todoParent.todos');
+                this.countItems(todoArray, item);
+            };
 
-this.listFilter = $stateParams.filter || 'all';
-this.filtersObj = {
-        all: {},
-        completed: {
-            checked: true
-        },
-        active: {
-            checked: false
-        }
-    };
+            this.toggleInput = function(item) {
+                this.show = !this.show;
+            };
 
-    this.delete = function(item) {
-      var todoArray = this.getTodo();
-      var todoToDelete = this.findTodoById(todoArray, item.id);
-      var index = todoArray.indexOf(todoToDelete);
-      if (index > -1) {
-        todoArray.splice(index, 1);
-      }
-      this.setTodo(todoArray);
-      $state.reload('todoParent.todos');
-    };
+            this.newTodo = '';
 
+            this.saveInput = function(item) {
+                item.body = this.newTodo;
+                var todoArray = StorageService.get();
+                var todoToUpdate = this.findTodoById(todoArray, item.id);
+                angular.copy(item, todoToUpdate);
+                StorageService.set(todoArray);
+                this.show = false;
+            };
+
+            this.countItems = function(todoArray) {
+                var unchecked = 0;
+                todoArray.forEach(function(item) {
+                        if (!item.checked) {
+                            unchecked++;
+                        }
+                    });
+                    return unchecked;
+                };
+
+            this.deleteCompleted = function() {
+              var self=this;
+              var todoArray = StorageService.get();
+              todoArray.forEach(function(item) {
+                if (item.checked) {
+                  self.delete(item);
+                }
+              });
+
+            };
 });

@@ -3,9 +3,12 @@
   <li ng-repeat ="item in list.todoItems | filter: list.filtersObj[list.listFilter]" ng-class="{'strike': item.checked}">
     <div class="checkbox" ng-click="list.toggleChecked(item)">
     </div>
-    <div class="itemText">
+    <div class="itemText" ng-click="list.toggleInput(item)">
       {{item.body}}
     </div>
+    <form class="editForm" ng-submit="list.saveInput(item)">
+      <input  class="editbox" ng-show="list.show" ng-model="list.newTodo"></input>
+    </form>
     <div class="delete" ng-click="list.delete(item)">
       X
     </div>
@@ -13,7 +16,7 @@
 </ul>
 
 <footer>
-    <p class='remaining'><span class='incomplete-items'>{{list.todoItems.length}}</span> items left</p>
+    <p class='remaining'><span class='incomplete-items'>{{list.countItems(list.todoItems)}}</span> items left</p>
     <nav>
         <ul>
             <li><button class='show-all active'><a ui-sref="todoParent.todos({filter: 'all'})">All</a></button></li>
@@ -21,5 +24,5 @@
             <li><button class='show-completed'><a ui-sref="todoParent.todos({filter: 'completed'})">Completed</a></button></li>
         </ul>
     </nav>
-    <button class='clear'>Clear completed</button>
+    <button class='clear' ng-click="list.deleteCompleted()">Clear completed</button>
 </footer>
