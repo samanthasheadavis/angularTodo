@@ -1,9 +1,9 @@
 
 <ul class='todoList'>
-  <li ng-repeat ="item in list.todoItems | filter: list.filtersObj[list.listFilter]" ng-class="{'strike': item.checked}">
-    <div class="checkbox" ng-click="list.toggleChecked(item)">
+  <li ng-repeat ="item in list.todoItems | filter: list.filtersObj[list.listFilter]">
+    <div class="checkbox" ng-click="list.toggleChecked(item)" ng-class="{'checked': item.checked}"><span>&#10003</span>
     </div>
-    <div class="itemText" ng-click="list.toggleInput(item)">
+    <div class="itemText" ng-click="list.toggleInput(item)" ng-class="{'strike': item.checked}">
       {{item.body}}
     </div>
     <form class="editForm" ng-submit="list.saveInput(item)">
@@ -16,7 +16,7 @@
 </ul>
 
 <footer>
-    <p class='remaining'><span class='incomplete-items'>{{list.countItems(list.todoItems)}}</span> items left</p>
+    <p class='remaining'><span class='incomplete-items'>{{list.countItems(list.todoItems)}}</span> tasks left</p>
     <nav>
         <ul>
             <li><button class='show-all active'><a ui-sref="todoParent.todos({filter: 'all'})">All</a></button></li>

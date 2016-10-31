@@ -1,0 +1,17 @@
+// styles for Add page //
+
+.todoForm {
+    border: 1px solid $innerBorderColor;
+    padding: 10px;
+    background: white;
+    font-style: italic;
+    width: 400px;
+    margin: 0 auto;
+
+    .new-todo {
+        border: none;
+        outline: none;
+        width: 200px;
+        clear: both;
+    }
+}

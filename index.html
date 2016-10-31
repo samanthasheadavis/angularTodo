@@ -9,7 +9,9 @@
     <meta name='author' content=''>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
 
+    <script src="https://use.fontawesome.com/e71b00b103.js"></script>
     <link rel="stylesheet" href="./node_modules/normalize.css/normalize.css" />
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
     <link rel="stylesheet" href="./src/styles/main.css"/>
 </head>
 
@@ -18,12 +20,12 @@
     <header>
         <h1>todos</h1>
     </header>
-
+<div class="navContainer">
     <nav class="nav">
         <div class="container">
             <ul class="navList">
                 <li class="navItem">
-                    <a ui-sref="todoParent.add">Add a Todo</a>
+                    <a ui-sref="todoParent.add">Add an Item</a>
                 </li>
                 <li class="navItem">
                     <a ui-sref="todoParent.todos">View Your Todos</a>
@@ -32,7 +34,7 @@
             </ul>
         </div>
     </nav>
-
+</div>
     <main>
         <ui-view></ui-view>
     </main>

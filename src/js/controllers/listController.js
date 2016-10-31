@@ -68,7 +68,7 @@ angular.module('todoApp').controller('ListController', function($state, localSto
                 todoArray.forEach(function(item) {
                         if (!item.checked) {
                             unchecked++;
-                        }
+                        } 
                     });
                     return unchecked;
                 };
