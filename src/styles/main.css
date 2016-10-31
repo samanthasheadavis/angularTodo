@@ -48,4 +48,9 @@ nav .navItem {
 .deleted {
   display: none; }
 
+footer li {
+  float: left;
+  list-style: none;
+  margin-right: 10px; }
+
 /*# sourceMappingURL=main.css.map */

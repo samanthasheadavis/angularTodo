@@ -81,3 +81,13 @@ nav {
 .deleted {
   display: none;
 }
+
+// footer styles //
+
+footer {
+  li {
+    float: left;
+    list-style: none;
+    margin-right: 10px;
+  }
+}
