@@ -16,9 +16,9 @@
     <p class='remaining'><span class='incomplete-items'>{{list.todoItems.length}}</span> items left</p>
     <nav>
         <ul>
-            <li><button class='show-all active'><a sref="todoParent.todos({filter: 'all'})">All</a></button></li>
-            <li><button class='show-active'><a sref="todoParent.todos({filter: 'active'})">Active</a></button></li>
-            <li><button class='show-completed'><a sref="todoParent.todos({filter: 'completed'})">Completed</a></button></li>
+            <li><button class='show-all active'><a ui-sref="todoParent.todos({filter: 'all'})">All</a></button></li>
+            <li><button class='show-active'><a ui-sref="todoParent.todos({filter: 'active'})">Active</a></button></li>
+            <li><button class='show-completed'><a ui-sref="todoParent.todos({filter: 'completed'})">Completed</a></button></li>
         </ul>
     </nav>
     <button class='clear'>Clear completed</button>

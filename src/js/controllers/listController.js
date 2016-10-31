@@ -1,4 +1,4 @@
-angular.module('todoApp').controller('ListController', function(localStorageService, $stateParams) {
+angular.module('todoApp').controller('ListController', function($state, localStorageService, $stateParams) {
 
     this.getTodo = function() {
         return localStorageService.get('localStorageTodo') || [];
@@ -44,7 +44,14 @@ this.filtersObj = {
     };
 
     this.delete = function(item) {
-      console.log(this.filtersObj[this.listFilter]);
+      var todoArray = this.getTodo();
+      var todoToDelete = this.findTodoById(todoArray, item.id);
+      var index = todoArray.indexOf(todoToDelete);
+      if (index > -1) {
+        todoArray.splice(index, 1);
+      }
+      this.setTodo(todoArray);
+      $state.reload('todoParent.todos');
     };
 
 });
