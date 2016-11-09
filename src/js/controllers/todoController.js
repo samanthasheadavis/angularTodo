@@ -15,5 +15,4 @@ angular.module('todoApp').controller('TodoController', function($state, StorageS
 
     $state.go('todoParent.todos');
   };
-
 });
