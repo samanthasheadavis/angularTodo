@@ -1,7 +1,7 @@
 angular.module('todoApp', ['ui.router', 'LocalStorageModule'])
 
 .config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/');
+  
 
   $stateProvider.state('todoParent', {
     url: '/',
